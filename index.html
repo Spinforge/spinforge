@@ -2,639 +2,867 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>SpinForge – Online Casino Bonuses</title>
+<title>SpinForge – Casino Ranking</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0">
 
 <style>
 :root{
---red:#ff2b2b;
---dark:#070707;
---glass:rgba(255,255,255,.08);
---border:rgba(255,255,255,.12);
+--primary:#ff6b00;
+--accent:#a259ff;
+--glass:rgba(15,15,35,.95);
+--border:rgba(255,255,255,.2);
+--green:#2ecc71;
 }
 
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{
-background:radial-gradient(circle at top,#3a0000 0%,#000 60%);
-color:#fff;
+    background:url('https://media.discordapp.net/attachments/718145354385588295/1457160435424821259/content.png?ex=695afde8&is=6959ac68&hm=da04db939719a8e9d45a80e7a1a84e5c982c933fa7f67c1f01511c00420a2893&=&format=webp&quality=lossless&width=1376&height=917') no-repeat center center fixed;
+    background-size:cover;
+    color:#fff;
+    min-height:100vh;
 }
 
-/* BACKDROP */
+/* Csak a sima, nem gradiens szövegek kapnak fekete outline-t */
+p, td, th, .tab-btn, .lang-btn, .btn-review, .btn-go, .place, .player-name, .player-amount, .player-prize, .rank, .leader-name, .leader-wager, .bonus-tip p {
+    text-shadow: 
+        -1px -1px 0 #000,
+         1px -1px 0 #000,
+        -1px  1px 0 #000,
+         1px  1px 0 #000;
+}
+
 .overlay{
-min-height:100vh;
-background:linear-gradient(180deg,rgba(0,0,0,.6),rgba(0,0,0,.95));
-padding:40px 20px;
+    min-height:100vh;
+    padding:20px 20px 120px 20px;
+    background:rgba(0,0,0,.35);
+    backdrop-filter:blur(6px);
 }
 
-/* TOP BAR */
-.top-bar{
-max-width:1200px;
-margin:0 auto 30px;
-display:flex;
-justify-content:flex-end;
+/* HEADER */
+header{
+    max-width:1300px;
+    margin:0 auto 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
 }
-.language-switch{display:flex;gap:10px}
-.lang-btn{
-padding:8px 16px;
-border-radius:30px;
-border:1px solid var(--border);
-background:var(--glass);
-cursor:pointer;
-font-weight:600;
-transition:.25s;
-}
-.lang-btn:hover{background:rgba(255,255,255,.15)}
-.lang-btn.active{background:var(--red)}
-
-/* LOGO */
 .logo{
-display:flex;
-justify-content:center;
-align-items:center;
-gap:15px;
-margin-bottom:40px;
+    display:flex;
+    align-items:center;
+    gap:20px;
 }
-.logo img{width:72px}
+.logo img{width:100px;height:auto;transform:rotate(-5deg);}
 .logo span{
-font-size:36px;
-font-weight:800;
-letter-spacing:.5px;
+    font-size:48px;
+    font-weight:900;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 20px rgba(255,107,0,.7);
+    animation:glow 3s ease-in-out infinite alternate, pulse 2s infinite;
 }
-.logo span strong{color:var(--red)}
 
-/* TABS */
+/* Navigáció középen */
+nav{
+    flex:1;
+    text-align:center;
+}
 .tabs{
-display:flex;
-justify-content:center;
-gap:16px;
-margin-bottom:50px;
-flex-wrap:wrap;
+    display:inline-flex;
+    gap:40px;
+    background:var(--glass);
+    padding:14px 40px;
+    border-radius:50px;
+    border:1px solid var(--border);
+    backdrop-filter:blur(10px);
 }
 .tab-btn{
-padding:14px 34px;
-border-radius:50px;
-background:var(--glass);
-border:1px solid var(--border);
-cursor:pointer;
-font-weight:700;
-transition:.3s;
+    padding:10px 20px;
+    border-radius:40px;
+    cursor:pointer;
+    font-weight:700;
+    font-size:16px;
+    transition:.3s;
 }
-.tab-btn:hover{transform:translateY(-2px)}
 .tab-btn.active{
-background:linear-gradient(135deg,var(--red),#b30000);
-box-shadow:0 10px 30px rgba(255,43,43,.35);
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    box-shadow:0 8px 20px rgba(255,107,0,.4);
 }
+.tab-btn:hover:not(.active){opacity:.8;}
+
+/* Nyelvváltás */
+.language-switch{display:flex;gap:10px;}
+.lang-btn{padding:7px 16px;border-radius:30px;border:1px solid var(--border);background:var(--glass);cursor:pointer;font-weight:600;transition:.25s;}
+.lang-btn.active{background:var(--accent);}
+.lang-btn:hover{background:rgba(255,255,255,.15);}
 
 /* HERO */
 .hero{
-max-width:1100px;
-margin:0 auto 80px;
-padding:60px 40px;
-border-radius:26px;
-background:linear-gradient(180deg,rgba(255,255,255,.09),rgba(255,255,255,.04));
-backdrop-filter:blur(18px);
-border:1px solid var(--border);
-text-align:center;
-box-shadow:0 40px 80px rgba(0,0,0,.5);
+    text-align:center;
+    max-width:1100px;
+    margin:0 auto 50px;
+    padding:40px 20px;
+    animation:fadeIn 2s ease-out;
+    background:rgba(15,15,35,.7);
+    border-radius:32px;
+    border:1px solid var(--border);
+    backdrop-filter:blur(12px);
 }
 .hero h1{
-font-size:46px;
-margin-bottom:18px;
+    font-size:56px;
+    margin-bottom:20px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+    text-shadow:0 0 40px rgba(255,107,0,.6);
+    animation:glow 3s ease-in-out infinite alternate, slideDown 1.5s ease-out;
 }
-.hero span{color:var(--red)}
 .hero p{
-font-size:18px;
-opacity:.85;
-max-width:700px;
-margin:0 auto;
+    font-size:24px;
+    opacity:.95;
+    animation:fadeInUp 1.5s ease-out 0.5s both;
 }
 
-/* CARDS */
-.cards{
-max-width:1200px;
-margin:0 auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:32px;
+/* Animációk */
+@keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
+@keyframes slideDown {from {transform:translateY(-50px);opacity:0;} to {transform:translateY(0);opacity:1;}}
+@keyframes fadeInUp {from {transform:translateY(30px);opacity:0;} to {transform:translateY(0);opacity:1;}}
+@keyframes glow {from {text-shadow:0 0 20px rgba(255,107,0,.4);} to {text-shadow:0 0 40px rgba(162,89,255,.6);}}
+@keyframes pulse {0%,100%{transform:scale(1) rotate(-5deg);}50%{transform:scale(1.05) rotate(-5deg);}}
+
+/* CASINO TABLE */
+.casino-table{max-width:1200px;margin:0 auto;border-collapse:separate;border-spacing:0 18px;width:100%;}
+.casino-table thead th{padding:16px 12px;text-align:left;opacity:.7;font-weight:700;font-size:14px;}
+.casino-table tbody tr{
+    background:var(--glass);
+    border-radius:18px;
+    border:2px solid var(--accent);
+    transition:.3s;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,.6);
 }
-.card{
-background:linear-gradient(180deg,rgba(255,255,255,.08),rgba(255,255,255,.03));
-border-radius:24px;
-padding:34px;
-border:1px solid var(--border);
-transition:.35s;
-position:relative;
-overflow:hidden;
-}
-.card::before{
-content:'';
-position:absolute;
-inset:0;
-background:radial-gradient(circle at top,rgba(255,43,43,.15),transparent 60%);
-opacity:0;
-transition:.35s;
-}
-.card:hover::before{opacity:1}
-.card:hover{
-transform:translateY(-10px) scale(1.02);
-border-color:var(--red);
-box-shadow:0 30px 60px rgba(0,0,0,.6);
+.casino-table tbody tr:hover{
+    transform:translateY(-6px);
+    border-color:var(--primary);
+    box-shadow:0 20px 50px rgba(162,89,255,.4);
 }
 
-.badge{
-display:inline-block;
-background:var(--red);
-padding:6px 16px;
-border-radius:50px;
-font-size:12px;
-font-weight:800;
-letter-spacing:.5px;
+/* Koronák top 3 */
+.casino-table tbody tr:nth-child(1) td:first-child .rank-num::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('https://fonts.gstatic.com/s/i/materialiconsoutlined/workspace_premium/v1/24px.svg') no-repeat center/contain;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(78%) saturate(749%) hue-rotate(359deg) brightness(103%) contrast(101%);
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.casino-table tbody tr:nth-child(2) td:first-child .rank-num::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('https://fonts.gstatic.com/s/i/materialiconsoutlined/workspace_premium/v1/24px.svg') no-repeat center/contain;
+    filter: brightness(0) saturate(100%) invert(77%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(120%) contrast(101%);
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.casino-table tbody tr:nth-child(3) td:first-child .rank-num::before {
+    content: "";
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url('https://fonts.gstatic.com/s/i/materialiconsoutlined/workspace_premium/v1/24px.svg') no-repeat center/contain;
+    filter: brightness(0) saturate(100%) invert(61%) sepia(44%) saturate(749%) hue-rotate(359deg) brightness(90%) contrast(87%);
+    margin-bottom: 8px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
-.card h2{
-margin:14px 0 6px;
-font-size:24px;
+/* Cellák */
+.casino-table td{
+    padding:28px 20px;
+    text-align:left;
+    vertical-align:middle;
+    background:transparent;
+    border:none;
 }
-.rating{
-color:gold;
-margin-bottom:12px;
-letter-spacing:2px;
+.casino-table td:first-child{padding-left:40px; text-align:center;}
+.casino-table td:last-child{padding-right:40px;}
+
+/* Logo */
+.casino-logo{width:120px;height:120px;object-fit:contain;}
+
+/* Gombok */
+.casino-table td:nth-last-child(1),.casino-table td:nth-last-child(2){white-space:nowrap;text-align:right;}
+.btn-review,.btn-go{
+    padding:10px 20px;
+    border-radius:16px;
+    text-decoration:none;
+    font-weight:700;
+    transition:.3s;
+    font-size:14px;
+    display:inline-block;
+    margin-left:12px;
 }
-.bonus{
-opacity:.9;
-margin-bottom:24px;
-line-height:1.5;
+.btn-review{background:var(--glass);color:#fff;border:1px solid var(--border);}
+.btn-review:hover{background:var(--accent);}
+.btn-go{background:var(--green);color:#fff; border-radius:30px;}
+.btn-go i{margin-left:8px;}
+.btn-go:hover{opacity:.85;}
+
+/* Fejléc */
+.casino-table thead tr{
+    background:var(--glass);
+    border-radius:28px;
+    overflow:hidden;
+    border:1px solid var(--border);
 }
 
-/* BUTTON */
-.btn{
-display:block;
-text-align:center;
-padding:15px;
-border-radius:14px;
-background:linear-gradient(135deg,var(--red),#b30000);
-color:#fff;
-text-decoration:none;
-font-weight:800;
-letter-spacing:.5px;
-transition:.3s;
-}
-.btn:hover{
-transform:translateY(-2px);
-box-shadow:0 15px 30px rgba(255,43,43,.45);
-}
+/* Rating stars */
+.star{color:#ffd700;margin-right:4px;font-size:20px;}
+
+/* Top 3 extra */
+.casino-table tbody tr.gold{border-color:#ffd700;box-shadow:0 30px 80px rgba(255,215,0,.45);}
+.casino-table tbody tr.silver{border-color:#c0c0c0;box-shadow:0 20px 60px rgba(192,192,192,.35);}
+.casino-table tbody tr.bronze{border-color:#cd7f32;box-shadow:0 20px 60px rgba(205,127,50,.35);}
 
 /* BONUS PAGE */
-.bonus-page{display:none;max-width:1100px;margin:0 auto}
+.bonus-page{max-width:1200px;margin:0 auto;}
+.bonus-header, .bonus-tip{
+    text-align:center;
+    margin-bottom:50px;
+    padding:40px;
+    background:var(--glass);
+    border-radius:32px;
+    border:1px solid var(--border);
+    backdrop-filter:blur(12px);
+}
+.bonus-header h2, .bonus-tip h3{
+    font-size:34px;
+    margin-bottom:16px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.bonus-header p, .bonus-tip p{font-size:18px;opacity:.9;}
+
 .bonus-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
-gap:30px;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:32px;
+    margin:80px 0;
 }
 .bonus-box{
-background:var(--glass);
-border-radius:24px;
-padding:36px;
-border:1px solid var(--border);
-text-align:center;
-transition:.3s;
+    background:var(--glass);
+    border-radius:32px;
+    padding:44px;
+    text-align:center;
+    border:1px solid var(--border);
+    transition:.4s;
+    position:relative;
+    overflow:hidden;
+    backdrop-filter:blur(12px);
 }
 .bonus-box:hover{
-transform:translateY(-8px);
-border-color:var(--red);
+    transform:translateY(-14px);
+    border-color:var(--primary);
+    box-shadow:0 24px 60px rgba(255,107,0,.25);
 }
 .bonus-box img{
-width:100%;
-max-width:220px;
-margin-bottom:24px;
+    width:100%;
+    max-width:220px;
+    margin-bottom:28px;
+    border-radius:20px;
+    box-shadow:0 10px 30px rgba(0,0,0,.3);
 }
+.bonus-box h3{font-size:26px;margin-bottom:14px;}
+.bonus-box p{opacity:.85;font-size:16px;}
+
+/* CONTACT PAGE */
+.contact-page{max-width:900px;margin:0 auto;text-align:center;}
+.contact-card{
+    background:var(--glass);
+    border-radius:32px;
+    padding:50px;
+    border:1px solid var(--border);
+    backdrop-filter:blur(12px);
+    box-shadow:0 20px 50px rgba(0,0,0,.3);
+}
+.contact-card h2{
+    font-size:34px;
+    margin-bottom:20px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
+.contact-card p{font-size:18px;opacity:.9;line-height:1.6;margin-bottom:20px;}
+.contact-card strong{color:var(--primary);}
 
 /* LEADERBOARD */
 .leaderboard{
-display:none;
-max-width:1000px;
-margin:0 auto;
-text-align:center;
+    max-width:1100px;
+    margin:0 auto;
+    text-align:center;
+    background:var(--glass);
+    border-radius:32px;
+    padding:40px;
+    box-shadow:0 20px 50px rgba(0,0,0,.5);
 }
-.pyramid{
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:18px;
-}
-.level{display:flex;gap:18px;flex-wrap:wrap;justify-content:center}
-.player{
-background:var(--glass);
-padding:18px 22px;
-border-radius:16px;
-border:1px solid var(--border);
-min-width:200px;
-}
-.player.gold{border-color:gold}
-.player.silver{border-color:silver}
-.player.bronze{border-color:#cd7f32}
-.name{font-weight:700}
-.wager{opacity:.8;font-size:14px;margin-top:6px}
-
-/* FOOTER */
-footer{
-text-align:center;
-opacity:.4;
-margin-top:90px;
-font-size:14px;
-}
-
-
-
-/* === TOP CASINO PYRAMID === */
-.top-pyramid{
-max-width:1200px;
-margin:0 auto 80px;
-display:flex;
-flex-direction:column;
-align-items:center;
-gap:30px;
-}
-
-.pyramid-top{
-width:360px;
-}
-
-.pyramid-bottom{
-display:flex;
-gap:30px;
-flex-wrap:wrap;
-justify-content:center;
-}
-
-/* nagyobb top #1 */
-.card.top1{
-transform:scale(1.08);
-border-color:gold;
-}
-.card.top1 .badge{background:gold;color:#000}
-
-/* top #2-3 */
-.card.top23{
-border-color:silver;
-}
-.card.top23 .badge{background:silver;color:#000}
-
-/* === NORMAL CASINO GRID === */
-.normal-casinos{
-max-width:1200px;
-margin:0 auto;
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:30px;
-}
-
-
-/* === LEADERBOARD TURBO === */
-.leaderboard{
-max-width:1100px;
-margin:0 auto;
-text-align:center;
-}
-
 .leaderboard h2{
-font-size:36px;
-margin-bottom:50px;
+    font-size: 34px;
+    margin-bottom: 40px;
+    background:linear-gradient(135deg,var(--primary),var(--accent));
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
 }
-
-.podium{
-display:flex;
-justify-content:center;
-align-items:flex-end;
-gap:30px;
-margin-bottom:60px;
-flex-wrap:wrap;
-}
-
-/* PODIUM CARDS */
+.podium{display:flex;justify-content:center;align-items:flex-end;gap:30px;margin-bottom:60px;flex-wrap:wrap;}
 .podium-card{
-background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
-border-radius:26px;
-padding:30px 26px;
-border:1px solid var(--border);
-min-width:260px;
-position:relative;
-transition:.35s;
-backdrop-filter:blur(14px);
+    background:linear-gradient(180deg,rgba(255,255,255,.12),rgba(255,255,255,.04));
+    border-radius:26px;padding:30px 26px;border:1px solid var(--border);
+    min-width:260px;position:relative;transition:.35s;backdrop-filter:blur(14px);
 }
-
-.podium-card:hover{
-transform:translateY(-10px) scale(1.03);
-}
-
-/* #1 */
-.podium-card.gold{
-border-color:gold;
-box-shadow:0 30px 80px rgba(255,215,0,.45);
-transform:scale(1.08);
-}
-.podium-card.gold::before{
-content:"👑";
-position:absolute;
-top:-22px;
-left:50%;
-transform:translateX(-50%);
-font-size:34px;
-}
-
-/* #2 */
-.podium-card.silver{
-border-color:silver;
-box-shadow:0 20px 60px rgba(192,192,192,.35);
-}
-
-/* #3 */
-.podium-card.bronze{
-border-color:#cd7f32;
-box-shadow:0 20px 60px rgba(205,127,50,.35);
-}
-
-/* podium content */
-.place{
-font-size:14px;
-font-weight:800;
-letter-spacing:2px;
-opacity:.6;
-margin-bottom:6px;
-}
-.player-name{
-font-size:20px;
-font-weight:800;
-margin-bottom:10px;
-}
-.player-amount{
-font-size:22px;
-font-weight:700;
-color:var(--red);
-}
-
-/* REST OF PLAYERS */
-.leader-list{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-gap:22px;
-}
-
+.podium-card:hover{transform:translateY(-10px) scale(1.03);}
+.podium-card.gold{border-color:#ffd700;box-shadow:0 30px 80px rgba(255,215,0,.45);transform:scale(1.08);}
+.podium-card.gold::before{content:"👑";position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:34px;}
+.podium-card.silver{border-color:#c0c0c0;box-shadow:0 20px 60px rgba(192,192,192,.35);}
+.podium-card.bronze{border-color:#cd7f32;box-shadow:0 20px 60px rgba(205,127,50,.35);}
+.place{font-size:14px;font-weight:800;opacity:.6;margin-bottom:6px;}
+.player-name{font-size:20px;font-weight:800;margin-bottom:10px;}
+.player-amount{font-size:24px;font-weight:700;color:var(--primary);}
+.player-prize{font-size:18px;color:var(--green);margin-top:8px;font-weight:700;}
 .leader-item{
-background:var(--glass);
-border-radius:18px;
-padding:18px 20px;
-border:1px solid var(--border);
-display:flex;
-justify-content:space-between;
-align-items:center;
-transition:.3s;
+    background:rgba(255,255,255,.06);
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:14px;
+    border:1px solid var(--border);
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    transition:.3s;
 }
-.leader-item:hover{
-transform:translateY(-6px);
-border-color:var(--red);
+.leader-item:hover{transform:translateY(-6px);border-color:var(--accent);}
+
+/* RESPONSIVE – MOBIL OPTIMALIZÁLÁS */
+@media(max-width:1024px){
+    header{flex-direction:column;gap:20px;}
+    .tabs{gap:20px;padding:10px 20px;}
+    .casino-table td{padding:20px 12px;}
+    .casino-logo{width:90px;height:90px;}
+    .btn-review,.btn-go{padding:8px 14px;font-size:13px;margin-left:6px;}
 }
 
-.rank{
-font-weight:800;
-opacity:.5;
-}
-.leader-name{
-font-weight:700;
-}
-.leader-wager{
-font-weight:700;
-color:var(--red);
+@media(max-width:768px){
+    .logo span{font-size:36px;}
+    .logo img{width:80px;}
+    .tabs{
+        gap:10px;
+        padding:10px 16px;
+        flex-wrap:wrap;
+        justify-content:center;
+        border-radius:30px;
+    }
+    .tab-btn{
+        font-size:14px;
+        padding:8px 14px;
+        min-width:80px;
+    }
+    .hero{
+        padding:30px 16px;
+        margin:0 10px 40px;
+    }
+    .hero h1{font-size:38px;line-height:1.2;}
+    .hero p{font-size:19px;}
+    .casino-table{
+        font-size:14px;
+        border-spacing:0 12px;
+    }
+    .casino-table thead{display:none;}
+    .casino-table tbody tr{
+        display:grid;
+        grid-template-columns:1fr;
+        gap:12px;
+        padding:20px;
+        position:relative;
+    }
+    .casino-table td{
+        padding:8px 0;
+        text-align:center;
+    }
+    .casino-table td:first-child{
+        position:absolute;
+        top:12px;
+        left:12px;
+        padding:0;
+    }
+    .casino-table td:nth-child(2){order:-1;text-align:center;}
+    .casino-logo{width:100px;height:100px;margin:0 auto;}
+    .btn-review,.btn-go{
+        width:100%;
+        margin:6px 0 0;
+    }
+    .casino-table td:nth-last-child(1),
+    .casino-table td:nth-last-child(2){
+        text-align:center;
+    }
+    .bonus-grid{grid-template-columns:1fr;gap:24px;margin:60px 10px;}
+    .bonus-box{padding:32px;}
+    .podium{flex-direction:column;align-items:center;gap:20px;}
+    .podium-card{min-width:auto;width:100%;max-width:320px;}
+    .podium-card.gold{transform:scale(1.05);}
+    .leader-item{flex-direction:column;gap:8px;text-align:center;}
+    .contact-card{padding:40px 20px;}
+    .overlay{padding:16px 16px 100px;}
 }
 
+@media(max-width:480px){
+    .logo span{font-size:32px;}
+    .hero h1{font-size:34px;}
+    .hero p{font-size:18px;}
+    .tab-btn{font-size:13px;padding:7px 12px;}
+    .floating-leaderboard-btn{
+        bottom:16px;
+        left:16px;
+        right:16px;
+        padding:12px 16px;
+        font-size:14px;
+        gap:10px;
+        border-radius:30px;
+        justify-content:center;
+    }
+    .floating-leaderboard-btn i{font-size:1.3em;}
+}
 
+/* Lebegő gomb – már volt, de mobilra finomhangolva fent */
+.floating-leaderboard-btn {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    z-index: 9999;
+    
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    
+    padding: 14px 24px;
+    background: linear-gradient(135deg, #ff6b00, #a259ff);
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    text-decoration: none;
+    border-radius: 50px;
+    box-shadow: 0 8px 25px rgba(162, 89, 255, 0.45),
+                0 4px 15px rgba(255, 107, 0, 0.35);
+                
+    transition: all 0.28s ease;
+    backdrop-filter: blur(6px);
+    border: 1px solid rgba(255,255,255,0.18);
+}
+
+.floating-leaderboard-btn:hover {
+    transform: translateY(-4px) scale(1.04);
+    box-shadow: 0 14px 35px rgba(162, 89, 255, 0.55),
+                0 8px 25px rgba(255, 107, 0, 0.45);
+    background: linear-gradient(135deg, #ff8c33, #b47aff);
+}
+
+.floating-leaderboard-btn i {
+    font-size: 1.4em;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
+}
 
 </style>
 </head>
 
 <body>
+   <a href="#leaderboard" class="floating-leaderboard-btn" id="floating-leaderboard-btn">
+    <i class="fas fa-trophy"></i>
+    10.000 Monthly Leaderboard
+</a>
 <div class="overlay">
 
-<div class="top-bar">
-<div class="language-switch">
-<div class="lang-btn active" onclick="setLang('en',this)">EN</div>
-<div class="lang-btn" onclick="setLang('hu',this)">HU</div>
-<div class="lang-btn" onclick="setLang('pl',this)">PL</div>
-</div>
-</div>
-
+<header>
 <div class="logo">
-<img src="spin.png">
-<span><strong>Spin</strong>Forge</span>
+<img src="spin.png" alt="SpinForge Logo">
+<span>SpinForge</span>
 </div>
 
+<nav>
 <div class="tabs">
-<div class="tab-btn active" onclick="openTab('casinos',this)" data-key="tabCasinos">Casinos</div>
-<div class="tab-btn" onclick="openTab('bonus',this)" data-key="tabBonus">Bonus</div>
-<div class="tab-btn" onclick="openTab('leaderboard',this)" data-key="tabLeaderboard">Leaderboard</div>
+<div class="tab-btn active" data-tab="casinos" data-key="tabCasinos">Home</div>
+<div class="tab-btn" data-tab="bonus" data-key="tabBonus">Bonus</div>
+<div class="tab-btn" data-tab="leaderboard" data-key="tabLeaderboard">Leaderboard</div>
+<div class="tab-btn" data-tab="contact" data-key="tabContact">Contact</div>
 </div>
+</nav>
 
-<!-- CASINOS -->
-<!-- CASINOS -->
-<div id="casinos">
+<div class="language-switch">
+<div class="lang-btn active" data-lang="en">EN</div>
+<div class="lang-btn" data-lang="hu">HU</div>
+<div class="lang-btn" data-lang="pl">PL</div>
+</div>
+</header>
 
-<section class="hero">
+<!-- HERO -->
+<section class="hero" id="hero-section">
 <h1 data-key="heroTitle">Best <span>Online Casino Bonuses</span></h1>
 <p data-key="heroDesc">SpinForge compares top online casinos.</p>
 </section>
 
-<!-- TOP 3 PYRAMID -->
-<section class="top-pyramid">
-
-<!-- #1 -->
-<div class="pyramid-top">
-<div class="card top1">
-<span class="badge">#1 BEST</span>
-<h2>Shuffle</h2>
-<div class="rating">★★★★★</div>
-<p class="bonus">200% bonus up to €5000 + Cashback</p>
-<a href="#" class="btn" data-key="register">Register</a>
+<!-- CASINO TABLE -->
+<div id="casinos">
+<table class="casino-table">
+<thead>
+<tr>
+<th>Rank</th>
+<th>Casino</th>
+<th>Bonus</th>
+<th>Payout</th>
+<th>Rating</th>
+<th>Review</th>
+<th>Go to site</th>
+</tr>
+</thead>
+<tbody>
+<tr class="gold">
+<td><div class="rank-num">1</div></td>
+<td><img src="royalsea.png" class="casino-logo" alt="RoyalSea"></td>
+<td>Up to 150 FS + 200% deposit bonus</td>
+<td>Max 2 hours</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr class="silver">
+<td><div class="rank-num">2</div></td>
+<td><img src="casino2.png" class="casino-logo" alt="SafeCasino"></td>
+<td>Up to 1200 FS + 100% deposit bonus</td>
+<td>Max 2 hours</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr class="bronze">
+<td><div class="rank-num">3</div></td>
+<td><img src="casino3.png" class="casino-logo" alt="FridayRoll"></td>
+<td>Up to 250 FS + 100% deposit bonus</td>
+<td>1-3 days</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">½</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">4</div></td>
+<td><img src="casino4.png" class="casino-logo" alt="LuckySpin"></td>
+<td>100% up to €500 + 100 FS</td>
+<td>Max 24 hours</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">5</div></td>
+<td><img src="casino5.png" class="casino-logo" alt="MegaWin"></td>
+<td>150 FS + 150% bonus</td>
+<td>Instant</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">6</div></td>
+<td><img src="casino6.png" class="casino-logo" alt="GoldRush"></td>
+<td>Up to €1000 welcome package</td>
+<td>Max 48 hours</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">7</div></td>
+<td><img src="casino7.png" class="casino-logo" alt="VegasStar"></td>
+<td>200% bonus + 50 FS</td>
+<td>1-2 days</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">8</div></td>
+<td><img src="casino8.png" class="casino-logo" alt="CryptoBet"></td>
+<td>300 FS no deposit</td>
+<td>Instant</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">9</div></td>
+<td><img src="casino9.png" class="casino-logo" alt="PrimeSlots"></td>
+<td>Up to €800 + 100 FS</td>
+<td>Max 24 hours</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+<tr>
+<td><div class="rank-num">10</div></td>
+<td><img src="casino10.png" class="casino-logo" alt="EliteCasino"></td>
+<td>125% bonus + 200 FS</td>
+<td>1-3 days</td>
+<td><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></td>
+<td><a href="#" class="btn-review">Review</a></td>
+<td><a href="#" class="btn-go">Go to site <i class="fa fa-arrow-up-right-from-square"></i></a></td>
+</tr>
+</tbody>
+</table>
 </div>
-</div>
-
-<!-- #2 - #3 -->
-<div class="pyramid-bottom">
-<div class="card top23">
-<span class="badge">#2</span>
-<h2>Razed</h2>
-<div class="rating">★★★★★</div>
-<p class="bonus">200% bonus up to €5000 + Cashback</p>
-<a href="#" class="btn" data-key="register">Register</a>
-</div>
-
-<div class="card top23">
-<span class="badge">#3</span>
-<h2>777 Fast Slots</h2>
-<div class="rating">★★★★★</div>
-<p class="bonus">200% bonus up to €5000 + 50 Free Spins</p>
-<a href="#" class="btn" data-key="register">Register</a>
-</div>
-</div>
-
-</section>
-
-<!-- NORMAL LIST -->
-<section class="normal-casinos">
-
-<div class="card">
-<span class="badge">#4</span>
-<h2>BetStorm</h2>
-<div class="rating">★★★★☆</div>
-<p class="bonus">100% bonus up to €2000</p>
-<a href="#" class="btn" data-key="register">Register</a>
-</div>
-
-<div class="card">
-<span class="badge">#5</span>
-<h2>LuckyAce</h2>
-<div class="rating">★★★★☆</div>
-<p class="bonus">150% bonus + 100 Free Spins</p>
-<a href="#" class="btn" data-key="register">Register</a>
-</div>
-
-<div class="card">
-<span class="badge">#6</span>
-<h2>SpinHero</h2>
-<div class="rating">★★★★☆</div>
-<p class="bonus">€500 Free Bet</p>
-<a href="#" class="btn" data-key="register">Register</a>
-</div>
-
-</section>
-</div>
-
 
 <!-- BONUS -->
-<div id="bonus" class="bonus-page">
-<section class="hero">
-<h1 data-key="bonusTitle">How Casino Bonuses Work</h1>
-<p data-key="bonusDesc">Simple explanation step by step.</p>
-</section>
+<div id="bonus" class="bonus-page" style="display:none;">
+<div class="bonus-header">
+<h2 data-key="bonusExtraTitle">How to Get Your Casino Bonus in 3 Simple Steps</h2>
+<p data-key="bonusExtraDesc">Follow these steps and start playing with extra money today!</p>
+</div>
 
 <div class="bonus-grid">
 <div class="bonus-box">
-<img src="claim.png">
+<img src="claim.png" alt="Claim bonus">
 <h3 data-key="b1title">1. Claim the Bonus</h3>
 <p data-key="b1desc">Register and activate the welcome bonus.</p>
 </div>
 <div class="bonus-box">
-<img src="wager.png">
+<img src="wager.png" alt="Wagering">
 <h3 data-key="b2title">2. Wagering</h3>
 <p data-key="b2desc">Play through the bonus amount.</p>
 </div>
 <div class="bonus-box">
-<img src="withdraw.png">
+<img src="withdraw.png" alt="Withdraw">
 <h3 data-key="b3title">3. Withdraw</h3>
 <p data-key="b3desc">After wagering you can withdraw winnings.</p>
 </div>
 </div>
+
+<div class="bonus-tip">
+<h3 data-key="bonusTipTitle">Pro Tip</h3>
+<p data-key="bonusTipDesc">Always read the bonus terms – look for low wagering requirements and high bonus percentage for the best value!</p>
+</div>
 </div>
 
 <!-- LEADERBOARD -->
-<!-- LEADERBOARD -->
-<div id="leaderboard" class="leaderboard">
-
-<h2 data-key="leaderTitle">🏆 Wager Race</h2>
-
-<!-- TOP 3 PODIUM -->
+<div id="leaderboard" class="leaderboard" style="display:none;">
+<h2 data-key="leaderboardTitle">Leaderboard</h2>
 <div class="podium">
-
 <div class="podium-card silver">
 <div class="place">#2</div>
 <div class="player-name">Pa*** Z.</div>
-<div class="player-amount">927 416 PLN</div>
+<div class="player-amount" data-amount="927416">927 416 <span class="currency">EUR</span></div>
+<div class="player-prize">$2,000 Prize</div>
 </div>
-
 <div class="podium-card gold">
 <div class="place">#1</div>
 <div class="player-name">Mi***ł K.</div>
-<div class="player-amount">1 243 781 PLN</div>
+<div class="player-amount" data-amount="1243781">1 243 781 <span class="currency">EUR</span></div>
+<div class="player-prize">$3,000 Prize</div>
 </div>
-
 <div class="podium-card bronze">
 <div class="place">#3</div>
 <div class="player-name">Kr***f M.</div>
-<div class="player-amount">881 093 PLN</div>
+<div class="player-amount" data-amount="881093">881 093 <span class="currency">EUR</span></div>
+<div class="player-prize">$1,000 Prize</div>
+</div>
 </div>
 
-</div>
-
-<!-- OTHER PLAYERS -->
 <div class="leader-list">
-
-<div class="leader-item">
-<div class="rank">#4</div>
-<div class="leader-name">To***z W.</div>
-<div class="leader-wager">653 874 PLN</div>
-</div>
-
-<div class="leader-item">
-<div class="rank">#5</div>
-<div class="leader-name">Ad*** P.</div>
-<div class="leader-wager">617 209 PLN</div>
-</div>
-
-<div class="leader-item">
-<div class="rank">#6</div>
-<div class="leader-name">Łu***z D.</div>
-<div class="leader-wager">598 662 PLN</div>
-</div>
-
-<div class="leader-item">
-<div class="rank">#7</div>
-<div class="leader-name">Ma***z R.</div>
-<div class="leader-wager">487 311 PLN</div>
-</div>
-
-<div class="leader-item">
-<div class="rank">#8</div>
-<div class="leader-name">Se***n L.</div>
-<div class="leader-wager">452 908 PLN</div>
-</div>
-
-<div class="leader-item">
-<div class="rank">#9</div>
-<div class="leader-name">Ka***l B.</div>
-<div class="leader-wager">439 127 PLN</div>
-</div>
-<div class="leader-item">
-<div class="rank">#10</div>
-<div class="leader-name">ba***l B.</div>
-<div class="leader-wager">339 127 PLN</div>
-</div>
+<div class="leader-item"><div class="rank">#4</div><div class="leader-name">To***z W.</div><div class="leader-wager" data-amount="653874">653 874 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#5</div><div class="leader-name">Ad*** P.</div><div class="leader-wager" data-amount="617209">617 209 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#6</div><div class="leader-name">Łu***z D.</div><div class="leader-wager" data-amount="598662">598 662 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#7</div><div class="leader-name">Ma***z R.</div><div class="leader-wager" data-amount="487311">487 311 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#8</div><div class="leader-name">Se***n L.</div><div class="leader-wager" data-amount="452908">452 908 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#9</div><div class="leader-name">Ka***l B.</div><div class="leader-wager" data-amount="439127">439 127 <span class="currency">EUR</span></div></div>
+<div class="leader-item"><div class="rank">#10</div><div class="leader-name">ba***l B.</div><div class="leader-wager" data-amount="339127">339 127 <span class="currency">EUR</span></div></div>
 </div>
 </div>
 
+<!-- CONTACT -->
+<div id="contact" class="contact-page" style="display:none;">
+<div class="contact-card">
+<h2 data-key="contactTitle">Partner with Us</h2>
+<p data-key="contactText1">Welcome to a growing platform for casino and crypto enthusiasts. With strong monthly traffic, we offer excellent visibility for brands looking to reach an engaged audience.</p>
+<p data-key="contactText2">Whether you're interested in sponsored content, banner advertising, or other promotional opportunities, we're here to help you connect with the right people.</p>
+<p data-key="contactText3">Our goal is to create effective collaborations that benefit both sides. Ready to discuss possibilities?</p>
+<p data-key="contactText4">For all business inquiries, please contact us at <strong>business@spinforge.com</strong></p>
+</div>
+</div>
 
-<footer>© 2026 SpinForge</footer>
 </div>
 
 <script>
-const translations={
-en:{tabCasinos:"Casinos",tabBonus:"Bonus",tabLeaderboard:"Leaderboard",heroTitle:"Best <span>Online Casino Bonuses</span>",heroDesc:"SpinForge compares top online casinos.",bonusTitle:"How Casino Bonuses Work",bonusDesc:"Simple explanation step by step.",b1title:"1. Claim the Bonus",b1desc:"Register and activate the welcome bonus.",b2title:"2. Wagering",b2desc:"Play through the bonus amount.",b3title:"3. Withdraw",b3desc:"After wagering you can withdraw winnings.",register:"Register",leaderTitle:"🏆 Top Players Today"},
-hu:{tabCasinos:"Kaszinók",tabBonus:"Bónusz",tabLeaderboard:"Ranglista",heroTitle:"Legjobb <span>Online Kaszinó Bónuszok</span>",heroDesc:"A SpinForge összehasonlítja a legjobb kaszinókat.",bonusTitle:"Hogyan működnek a bónuszok",bonusDesc:"Egyszerű magyarázat lépésről lépésre.",b1title:"1. Bónusz igénylése",b1desc:"Regisztrálj és aktiváld a bónuszt.",b2title:"2. Megforgatás",b2desc:"Teljesítsd a feltételeket.",b3title:"3. Kifizetés",b3desc:"Siker után kiveheted.",register:"Regisztráció",leaderTitle:"🏆 Top játékosok ma"},
-pl:{tabCasinos:"Kasyna",tabBonus:"Bonus",tabLeaderboard:"Ranking",heroTitle:"Najlepsze <span>Bonusy Kasyn Online</span>",heroDesc:"SpinForge porównuje najlepsze kasyna.",bonusTitle:"Jak działają bonusy",bonusDesc:"Proste wyjaśnienie krok po kroku.",b1title:"1. Odbierz bonus",b1desc:"Zarejestruj się i aktywuj bonus.",b2title:"2. Obrót",b2desc:"Spełnij warunki obrotu.",b3title:"3. Wypłata",b3desc:"Po obrocie wypłać środki.",register:"Zarejestruj się",leaderTitle:"🏆 Top gracze dzisiaj"}
+const rates = {EUR:1,PLN:4.2122,FORINT:383.41};
+
+const translations = {
+    en: {
+        tabCasinos: "Home",
+        tabBonus: "Bonus",
+        tabLeaderboard: "Leaderboard",
+        tabContact: "Contact",
+        heroTitle: "Best <span>Online Casino Bonuses</span>",
+        heroDesc: "SpinForge compares top online casinos.",
+        leaderboardTitle: "Leaderboard",
+        bonusExtraTitle: "How to Get Your Casino Bonus in 3 Simple Steps",
+        bonusExtraDesc: "Follow these steps and start playing with extra money today!",
+        bonusTipTitle: "Pro Tip",
+        bonusTipDesc: "Always read the bonus terms – look for low wagering requirements and high bonus percentage for the best value!",
+        b1title: "1. Claim the Bonus",
+        b1desc: "Register and activate the welcome bonus.",
+        b2title: "2. Wagering",
+        b2desc: "Play through the bonus amount.",
+        b3title: "3. Withdraw",
+        b3desc: "After wagering you can withdraw winnings.",
+        contactTitle: "Partner with Us",
+        contactText1: "Welcome to a growing platform for casino and crypto enthusiasts. With strong monthly traffic, we offer excellent visibility for brands looking to reach an engaged audience.",
+        contactText2: "Whether you're interested in sponsored content, banner advertising, or other promotional opportunities, we're here to help you connect with the right people.",
+        contactText3: "Our goal is to create effective collaborations that benefit both sides. Ready to discuss possibilities?",
+        contactText4: "For all business inquiries, please contact us at <strong>business@spinforge.com</strong>"
+    },
+    hu: {
+        tabCasinos: "Kaszinók",
+        tabBonus: "Bónusz",
+        tabLeaderboard: "Ranglista",
+        tabContact: "Kapcsolat",
+        heroTitle: "Legjobb <span>Online Kaszinó Bónuszok</span>",
+        heroDesc: "A SpinForge összehasonlítja a legjobb kaszinókat.",
+        leaderboardTitle: "Ranglista",
+        bonusExtraTitle: "Kaszinó bónusz megszerzése 3 egyszerű lépésben",
+        bonusExtraDesc: "Kövesd ezeket a lépéseket és már ma extra pénzzel játszhatsz!",
+        bonusTipTitle: "Profi Tipp",
+        bonusTipDesc: "Mindig olvasd el a bónusz feltételeket – alacsony megforgatási követelmény és magas bónusz százalék a legjobb érték!",
+        b1title: "1. Bónusz igénylése",
+        b1desc: "Regisztrálj és aktiváld az üdvözlő bónuszt.",
+        b2title: "2. Megforgatás",
+        b2desc: "Játssz át a bónusz összegén.",
+        b3title: "3. Kifizetés",
+        b3desc: "A megforgatás után kifizetheted a nyereményt.",
+        contactTitle: "Együttműködés",
+        contactText1: "Üdvözlünk egy dinamikusan növekvő platformon, ahol a kaszinó- és kriptorajongók találkoznak. Jelentős havi látogatottsággal kiváló megjelenési lehetőséget biztosítunk márkák számára.",
+        contactText2: "Szponzorált tartalom, banner hirdetés vagy más reklámlehetőség érdekel? Segítünk a célközönség elérésében.",
+        contactText3: "Célunk kölcsönösen előnyös partnerségek kialakítása. Érdekel egy közös projekt?",
+        contactText4: "Üzleti megkereséseket a <strong>business@spinforge.com</strong> címen várjuk."
+    },
+    pl: {
+        tabCasinos: "Kasyna",
+        tabBonus: "Bonus",
+        tabLeaderboard: "Ranking",
+        tabContact: "Kontakt",
+        heroTitle: "Najlepsze <span>Bonusy Kasyn Online</span>",
+        heroDesc: "SpinForge porównuje najlepsze kasyna.",
+        leaderboardTitle: "Ranking",
+        bonusExtraTitle: "Jak odebrać bonus kasynowy w 3 prostych krokach",
+        bonusExtraDesc: "Postępuj według tych kroków i zacznij grać z dodatkowymi środkami już dziś!",
+        bonusTipTitle: "Pro Tip",
+        bonusTipDesc: "Zawsze czytaj regulamin bonusu – szukaj niskiego wymogu obrotu i wysokiego procentu bonusu dla najlepszej wartości!",
+        b1title: "1. Odbierz bonus",
+        b1desc: "Zarejestruj się i aktywuj bonus powitalny.",
+        b2title: "2. Obrót",
+        b2desc: "Przegraj kwotę bonusu.",
+        b3title: "3. Wypłata",
+        b3desc: "Po obrocie możesz wypłacić wygrane.",
+        contactTitle: "Współpraca",
+        contactText1: "Witamy na rozwijającej się platformie dla entuzjastów kasyn i kryptowalut. Dzięki solidnemu ruchowi miesięcznemu oferujemy doskonałą widoczność dla marek.",
+        contactText2: "Artykuły sponsorowane, banery reklamowe lub inne formy promocji? Pomożemy dotrzeć do właściwej publiczności.",
+        contactText3: "Naszym celem są obopólnie korzystne współprace. Gotowy na rozmowę?",
+        contactText4: "Wszystkie zapytania biznesowe prosimy kierować na <strong>business@spinforge.com</strong>"
+    }
 };
 
-function setLang(lang,el){
-document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');
-document.querySelectorAll('[data-key]').forEach(e=>e.innerHTML=translations[lang][e.dataset.key]);
+let currentLang = 'en';
+
+function formatNumber(num){return num.toLocaleString('en-US',{minimumFractionDigits:0}).replace(/,/g,' ');}
+
+function updateAmounts(){
+    const currency = currentLang==='hu'?'FORINT':(currentLang==='pl'?'PLN':'EUR');
+    const rate = rates[currency];
+    document.querySelectorAll('[data-amount]').forEach(el=>{
+        const baseAmount=parseInt(el.getAttribute('data-amount'));
+        const converted=Math.round(baseAmount*rate);
+        el.innerHTML=formatNumber(converted)+' <span class="currency">'+currency+'</span>';
+    });
 }
 
-function openTab(tab,el){
-['casinos','bonus','leaderboard'].forEach(t=>document.getElementById(t).style.display=t===tab?'block':'none');
-document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
-el.classList.add('active');
+function updateTexts(){
+    document.querySelectorAll('[data-key]').forEach(e=>{
+        const key=e.dataset.key;
+        if(translations[currentLang] && translations[currentLang][key]){
+            e.innerHTML=translations[currentLang][key];
+        }
+    });
 }
+
+function toggleHero(){
+    const hero=document.getElementById('hero-section');
+    const activeTab=document.querySelector('.tab-btn.active').dataset.tab;
+    hero.style.display=(activeTab==='casinos')?'block':'none';
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    document.querySelectorAll('.lang-btn').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+            this.classList.add('active');
+            currentLang=this.dataset.lang;
+            updateTexts();
+            updateAmounts();
+        });
+    });
+
+    document.querySelectorAll('.tab-btn').forEach(btn=>{
+        btn.addEventListener('click',function(){
+            const tab=this.dataset.tab;
+            document.getElementById('casinos').style.display=tab==='casinos'?'block':'none';
+            document.getElementById('bonus').style.display=tab==='bonus'?'block':'none';
+            document.getElementById('leaderboard').style.display=tab==='leaderboard'?'block':'none';
+            document.getElementById('contact').style.display=tab==='contact'?'block':'none';
+
+            document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+            this.classList.add('active');
+
+            updateTexts();
+            toggleHero();
+        });
+    });
+
+    updateTexts();
+    updateAmounts();
+    toggleHero();
+
+    // Lebegő Leaderboard gomb kezelése
+    const floatingBtn = document.getElementById('floating-leaderboard-btn');
+    if (floatingBtn) {
+        floatingBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const leaderboardTab = document.querySelector('.tab-btn[data-tab="leaderboard"]');
+            if (leaderboardTab) {
+                leaderboardTab.click();
+            }
+
+            const leaderboardSection = document.getElementById('leaderboard');
+            if (leaderboardSection) {
+                leaderboardSection.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    }
+});
 </script>
-
 </body>
 </html>
