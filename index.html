@@ -9,14 +9,11 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,700,1,0">
 <!-- Alap favicon (16x16 vagy 32x32 PNG/ICO) -->
   <link rel="icon" href="spin.png" type="image/x-icon">
-
   <!-- Modern böngészőknek (PNG, több méret) -->
   <link rel="icon" type="spin.png" sizes="32x32" href="/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-
   <!-- Apple Touch Icon (mobil/home screen) -->
   <link rel="apple-touch-icon" sizes="180x180" href="spin.png">
-
   <!-- Chrome/Android ajánlott -->
   <link rel="manifest" href="spin.png">
 <style>
@@ -27,7 +24,6 @@
 --border:rgba(255,255,255,.2);
 --green:#2ecc71;
 }
-
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Inter',sans-serif}
 body{
     background:url('https://media.discordapp.net/attachments/718145354385588295/1457160435424821259/content.png?ex=695afde8&is=6959ac68&hm=da04db939719a8e9d45a80e7a1a84e5c982c933fa7f67c1f01511c00420a2893&=&format=webp&quality=lossless&width=1376&height=917') no-repeat center center fixed;
@@ -35,23 +31,20 @@ body{
     color:#fff;
     min-height:100vh;
 }
-
 /* Csak a sima, nem gradiens szövegek kapnak fekete outline-t */
 p, td, th, .tab-btn, .lang-btn, .btn-review, .btn-go, .place, .player-name, .player-amount, .player-prize, .rank, .leader-name, .leader-wager, .bonus-tip p {
-    text-shadow: 
+    text-shadow:
         -1px -1px 0 #000,
          1px -1px 0 #000,
-        -1px  1px 0 #000,
-         1px  1px 0 #000;
+        -1px 1px 0 #000,
+         1px 1px 0 #000;
 }
-
 .overlay{
     min-height:100vh;
     padding:20px 20px 120px 20px;
     background:rgba(0,0,0,.35);
     backdrop-filter:blur(6px);
 }
-
 /* HEADER */
 header{
     max-width:1300px;
@@ -75,7 +68,6 @@ header{
     text-shadow:0 0 20px rgba(255,107,0,.7);
     animation:glow 3s ease-in-out infinite alternate, pulse 2s infinite;
 }
-
 /* Navigáció középen */
 nav{
     flex:1;
@@ -103,13 +95,11 @@ nav{
     box-shadow:0 8px 20px rgba(255,107,0,.4);
 }
 .tab-btn:hover:not(.active){opacity:.8;}
-
 /* Nyelvváltás */
 .language-switch{display:flex;gap:10px;}
 .lang-btn{padding:7px 16px;border-radius:30px;border:1px solid var(--border);background:var(--glass);cursor:pointer;font-weight:600;transition:.25s;}
 .lang-btn.active{background:var(--accent);}
 .lang-btn:hover{background:rgba(255,255,255,.15);}
-
 /* HERO */
 .hero{
     text-align:center;
@@ -136,14 +126,12 @@ nav{
     opacity:.95;
     animation:fadeInUp 1.5s ease-out 0.5s both;
 }
-
 /* Animációk */
 @keyframes fadeIn {from {opacity:0;} to {opacity:1;}}
 @keyframes slideDown {from {transform:translateY(-50px);opacity:0;} to {transform:translateY(0);opacity:1;}}
 @keyframes fadeInUp {from {transform:translateY(30px);opacity:0;} to {transform:translateY(0);opacity:1;}}
 @keyframes glow {from {text-shadow:0 0 20px rgba(255,107,0,.4);} to {text-shadow:0 0 40px rgba(162,89,255,.6);}}
 @keyframes pulse {0%,100%{transform:scale(1) rotate(-5deg);}50%{transform:scale(1.05) rotate(-5deg);}}
-
 /* CASINO TABLE */
 .casino-table{max-width:1200px;margin:0 auto;border-collapse:separate;border-spacing:0 18px;width:100%;}
 .casino-table thead th{padding:16px 12px;text-align:left;opacity:.7;font-weight:700;font-size:14px;}
@@ -160,7 +148,6 @@ nav{
     border-color:var(--primary);
     box-shadow:0 20px 50px rgba(162,89,255,.4);
 }
-
 /* Koronák top 3 */
 .casino-table tbody tr:nth-child(1) td:first-child .rank-num::before {
     content: "";
@@ -195,7 +182,6 @@ nav{
     margin-left: auto;
     margin-right: auto;
 }
-
 /* Cellák */
 .casino-table td{
     padding:28px 20px;
@@ -206,10 +192,8 @@ nav{
 }
 .casino-table td:first-child{padding-left:40px; text-align:center;}
 .casino-table td:last-child{padding-right:40px;}
-
 /* Logo */
 .casino-logo{width:120px;height:120px;object-fit:contain;}
-
 /* Gombok */
 .casino-table td:nth-last-child(1),.casino-table td:nth-last-child(2){white-space:nowrap;text-align:right;}
 .btn-review,.btn-go{
@@ -227,7 +211,6 @@ nav{
 .btn-go{background:var(--green);color:#fff; border-radius:30px;}
 .btn-go i{margin-left:8px;}
 .btn-go:hover{opacity:.85;}
-
 /* Fejléc */
 .casino-table thead tr{
     background:var(--glass);
@@ -235,15 +218,12 @@ nav{
     overflow:hidden;
     border:1px solid var(--border);
 }
-
 /* Rating stars */
 .star{color:#ffd700;margin-right:4px;font-size:20px;}
-
 /* Top 3 extra */
 .casino-table tbody tr.gold{border-color:#ffd700;box-shadow:0 30px 80px rgba(255,215,0,.45);}
 .casino-table tbody tr.silver{border-color:#c0c0c0;box-shadow:0 20px 60px rgba(192,192,192,.35);}
 .casino-table tbody tr.bronze{border-color:#cd7f32;box-shadow:0 20px 60px rgba(205,127,50,.35);}
-
 /* BONUS PAGE */
 .bonus-page{max-width:1200px;margin:0 auto;}
 .bonus-header, .bonus-tip{
@@ -263,7 +243,6 @@ nav{
     -webkit-text-fill-color:transparent;
 }
 .bonus-header p, .bonus-tip p{font-size:18px;opacity:.9;}
-
 .bonus-grid{
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
@@ -295,7 +274,6 @@ nav{
 }
 .bonus-box h3{font-size:26px;margin-bottom:14px;}
 .bonus-box p{opacity:.85;font-size:16px;}
-
 /* CONTACT PAGE */
 .contact-page{max-width:900px;margin:0 auto;text-align:center;}
 .contact-card{
@@ -315,7 +293,6 @@ nav{
 }
 .contact-card p{font-size:18px;opacity:.9;line-height:1.6;margin-bottom:20px;}
 .contact-card strong{color:var(--primary);}
-
 /* LEADERBOARD */
 .leaderboard{
     max-width:1100px;
@@ -360,7 +337,6 @@ nav{
     transition:.3s;
 }
 .leader-item:hover{transform:translateY(-6px);border-color:var(--accent);}
-
 /* RESPONSIVE – MOBIL OPTIMALIZÁLÁS */
 @media(max-width:1024px){
     header{flex-direction:column;gap:20px;}
@@ -369,7 +345,6 @@ nav{
     .casino-logo{width:90px;height:90px;}
     .btn-review,.btn-go{padding:8px 14px;font-size:13px;margin-left:6px;}
 }
-
 @media(max-width:768px){
     .logo span{font-size:36px;}
     .logo img{width:80px;}
@@ -432,7 +407,6 @@ nav{
     .contact-card{padding:40px 20px;}
     .overlay{padding:16px 16px 100px;}
 }
-
 @media(max-width:480px){
     .logo span{font-size:32px;}
     .hero h1{font-size:34px;}
@@ -450,18 +424,17 @@ nav{
     }
     .floating-leaderboard-btn i{font-size:1.3em;}
 }
-
 /* Lebegő gomb – már volt, de mobilra finomhangolva fent */
 .floating-leaderboard-btn {
     position: fixed;
     bottom: 30px;
     left: 30px;
     z-index: 9999;
-    
+   
     display: flex;
     align-items: center;
     gap: 12px;
-    
+   
     padding: 14px 24px;
     background: linear-gradient(135deg, #ff6b00, #a259ff);
     color: white;
@@ -471,40 +444,34 @@ nav{
     border-radius: 50px;
     box-shadow: 0 8px 25px rgba(162, 89, 255, 0.45),
                 0 4px 15px rgba(255, 107, 0, 0.35);
-                
+               
     transition: all 0.28s ease;
     backdrop-filter: blur(6px);
     border: 1px solid rgba(255,255,255,0.18);
 }
-
 .floating-leaderboard-btn:hover {
     transform: translateY(-4px) scale(1.04);
     box-shadow: 0 14px 35px rgba(162, 89, 255, 0.55),
                 0 8px 25px rgba(255, 107, 0, 0.45);
     background: linear-gradient(135deg, #ff8c33, #b47aff);
 }
-
 .floating-leaderboard-btn i {
     font-size: 1.4em;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.4));
 }
-
 </style>
 </head>
-
 <body>
    <a href="#leaderboard" class="floating-leaderboard-btn" id="floating-leaderboard-btn">
     <i class="fas fa-trophy"></i>
     10.000$ Monthly Leaderboard
 </a>
 <div class="overlay">
-
 <header>
 <div class="logo">
 <img src="spin.png" alt="SpinForge Logo">
 <span>SpinForge</span>
 </div>
-
 <nav>
 <div class="tabs">
 <div class="tab-btn active" data-tab="casinos" data-key="tabCasinos">Home</div>
@@ -513,20 +480,17 @@ nav{
 <div class="tab-btn" data-tab="contact" data-key="tabContact">Contact</div>
 </div>
 </nav>
-
 <div class="language-switch">
 <div class="lang-btn active" data-lang="en">EN</div>
 <div class="lang-btn" data-lang="hu">HU</div>
 <div class="lang-btn" data-lang="pl">PL</div>
 </div>
 </header>
-
 <!-- HERO -->
 <section class="hero" id="hero-section">
 <h1 data-key="heroTitle">Best <span>Online Casino Bonuses</span></h1>
 <p data-key="heroDesc">SpinForge compares top online casinos.</p>
 </section>
-
 <!-- CASINO TABLE -->
 <div id="casinos">
 <table class="casino-table">
@@ -635,14 +599,12 @@ nav{
 </tbody>
 </table>
 </div>
-
 <!-- BONUS -->
 <div id="bonus" class="bonus-page" style="display:none;">
 <div class="bonus-header">
 <h2 data-key="bonusExtraTitle">How to Get Your Casino Bonus in 3 Simple Steps</h2>
 <p data-key="bonusExtraDesc">Follow these steps and start playing with extra money today!</p>
 </div>
-
 <div class="bonus-grid">
 <div class="bonus-box">
 <img src="claim.png" alt="Claim bonus">
@@ -660,13 +622,11 @@ nav{
 <p data-key="b3desc">After wagering you can withdraw winnings.</p>
 </div>
 </div>
-
 <div class="bonus-tip">
 <h3 data-key="bonusTipTitle">Pro Tip</h3>
 <p data-key="bonusTipDesc">Always read the bonus terms – look for low wagering requirements and high bonus percentage for the best value!</p>
 </div>
 </div>
-
 <!-- LEADERBOARD -->
 <div id="leaderboard" class="leaderboard" style="display:none;">
 <h2 data-key="leaderboardTitle">Leaderboard</h2>
@@ -674,7 +634,7 @@ nav{
 <div class="podium-card silver">
 <div class="place">#2</div>
 <div class="player-name">Pa*** Z.</div>
-<div class="player-amount" data-amount="14917863">1&thinsp;177,63 <span class="currency">EUR</span></div>
+<div class="player-amount" data-amount="14917863">149&thinsp;178,63 <span class="currency">EUR</span></div>
 <div class="player-prize">$2,000 Prize</div>
 </div>
 <div class="podium-card gold">
@@ -700,7 +660,6 @@ nav{
 <div class="leader-item"><div class="rank">#10</div><div class="leader-name">ba***l B.</div><div class="leader-wager" data-amount="5451503">54&thinsp;515,03 <span class="currency">EUR</span></div></div>
 </div>
 </div>
-
 <!-- CONTACT -->
 <div id="contact" class="contact-page" style="display:none;">
 <div class="contact-card">
@@ -711,12 +670,9 @@ nav{
 <p data-key="contactText4">For all business inquiries, please contact us at <strong>business@spinforge.com</strong></p>
 </div>
 </div>
-
 </div>
-
 <script>
 const rates = {EUR:1,PLN:4.2122,FORINT:383.41};
-
 const translations = {
     en: {
         tabCasinos: "Home",
@@ -787,22 +743,28 @@ const translations = {
         contactTitle: "Współpraca",
         contactText1: "Witamy na rozwijającej się platformie dla entuzjastów kasyn i kryptowalut. Dzięki solidnemu ruchowi miesięcznemu oferujemy doskonałą widoczność dla marek.",
         contactText2: "Artykuły sponsorowane, banery reklamowe lub inne formy promocji? Pomożemy dotrzeć do właściwej publiczności.",
-        contactText3: "Naszym celem są obopólnie korzystne współprace. Gotowy na rozmowę?",
+        contactText3: "Nasym celem są obopólnie korzystne współprace. Gotowy na rozmowę?",
         contactText4: "Wszystkie zapytania biznesowe prosimy kierować na <strong>business@spinforge.com</strong>"
     }
 };
-
 let currentLang = 'en';
 
-function formatNumber(num){return num.toLocaleString('en-US',{minimumFractionDigits:0}).replace(/,/g,' ');}
+// Számformázás: európai stílus (szóköz ezres elválasztó, vessző tizedes)
+function formatNumber(num, currency) {
+    const fixed = (num / 100).toFixed(2); // centből euró/forint/pln
+    const [integer, decimal] = fixed.split('.');
+    const formattedInteger = integer.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
+    return `${formattedInteger},${decimal}`;
+}
 
 function updateAmounts(){
     const currency = currentLang==='hu'?'FORINT':(currentLang==='pl'?'PLN':'EUR');
     const rate = rates[currency];
     document.querySelectorAll('[data-amount]').forEach(el=>{
-        const baseAmount=parseInt(el.getAttribute('data-amount'));
-        const converted=Math.round(baseAmount*rate);
-        el.innerHTML=formatNumber(converted)+' <span class="currency">'+currency+'</span>';
+        const baseCents = parseInt(el.getAttribute('data-amount'));
+        const convertedCents = Math.round(baseCents * rate);
+        const formatted = formatNumber(convertedCents, currency);
+        el.innerHTML = formatted.replace(/ /g, '&thinsp;') + ' <span class="currency">' + currency + '</span>';
     });
 }
 
@@ -831,7 +793,6 @@ document.addEventListener('DOMContentLoaded',()=>{
             updateAmounts();
         });
     });
-
     document.querySelectorAll('.tab-btn').forEach(btn=>{
         btn.addEventListener('click',function(){
             const tab=this.dataset.tab;
@@ -839,15 +800,12 @@ document.addEventListener('DOMContentLoaded',()=>{
             document.getElementById('bonus').style.display=tab==='bonus'?'block':'none';
             document.getElementById('leaderboard').style.display=tab==='leaderboard'?'block':'none';
             document.getElementById('contact').style.display=tab==='contact'?'block':'none';
-
             document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
             this.classList.add('active');
-
             updateTexts();
             toggleHero();
         });
     });
-
     updateTexts();
     updateAmounts();
     toggleHero();
@@ -857,12 +815,10 @@ document.addEventListener('DOMContentLoaded',()=>{
     if (floatingBtn) {
         floatingBtn.addEventListener('click', function(e) {
             e.preventDefault();
-
             const leaderboardTab = document.querySelector('.tab-btn[data-tab="leaderboard"]');
             if (leaderboardTab) {
                 leaderboardTab.click();
             }
-
             const leaderboardSection = document.getElementById('leaderboard');
             if (leaderboardSection) {
                 leaderboardSection.scrollIntoView({
@@ -876,9 +832,3 @@ document.addEventListener('DOMContentLoaded',()=>{
 </script>
 </body>
 </html>
-
-
-
-
-
-
